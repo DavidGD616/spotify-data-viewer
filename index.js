@@ -74,20 +74,21 @@ app.get('/', (req, res) => {
     .then(response => {
       if (response.status === 200) {
   
-        const { access_token, token_type } = response.data;
-  
-        const { refresh_token } = response.data;
+        const { access_token, refresh_token } = response.data;
 
-        axios.get(`http://localhost:8888/refresh_token?refresh_token=${refresh_token}`)
-          .then(response => {
-            res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
-          })
-          .catch(error => {
-            res.send(error);
-          });
+        const queryParams = querystring.stringify({
+          access_token,
+          refresh_token,
+        });
+  
+        // redirect to react
+        res.redirect(`http://localhost:3000/?${queryParams}`);
+
+        // pass along tokens in query params
   
       } else {
-        res.send(response);
+        res.send(`/?${querystring.stringify({ error:
+        'invalid_token' })}`);
       }
     })
     .catch(error => {
