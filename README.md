@@ -1,9 +1,5 @@
 # Spotify-data-viewer
 
-# Spotify Connected App
-
-End product of the "Build a Spotify Connected App" newline course
-
 ## Local Installation & Set Up
 
 1. Register a Spotify App in your [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/) and add `http://localhost:8888/callback` as a Redirect URI in the app settings
